@@ -32,6 +32,8 @@ def genMeme(template_id, text0, text1):
     if template_id == '':
         return None
 
+    api_url = 'https://api.imgflip.com/caption_image'
+
     if text1 != '':
         payload = {
             'template_id': template_id,
@@ -49,7 +51,6 @@ def genMeme(template_id, text0, text1):
             'text0': text0,
         }
 
-    api_url = 'https://api.imgflip.com/caption_image'
     r = requests.get(api_url, params=payload)
     # print(parsed_json)
     parsed_json = json.loads(r.text)

@@ -1,14 +1,16 @@
 from memeAPI import processMeme, genMeme
+from gifAPI import genGif
 
 def processString(inptStr):
     ''' 
     inptStr may be a string of the following forms:
     * 'meme: text0 | text1'
-    * 'xkcd: search_keywords'
     * 'gif: search_keywords'
 
     If not, it returns an appropriate error message,
     stating an improperly formatted <magic> tag.
+
+    TODO: Find a way to efficiently search for xkcd comics
     '''
     imgParamList = inptStr.split(':')
 
@@ -32,10 +34,12 @@ def processString(inptStr):
 
             if len(imgParams) == 2 or len(imgParams) == 1:
                 text0 = imgParams[0]
+
                 if len(imgParams) == 2:
                     text1 = imgParams[1]
                 elif len(imgParams) == 1:
                     text1 = ''
+
                 imgURL = genMeme(template_id, text0, text1)
                 print(imgURL)
                 return imgURL
@@ -48,15 +52,21 @@ def processString(inptStr):
                 print("Too few lines of captions! Cannot create meme.")
                 return -1
 
-        elif imgType == 'xkcd':
-            pass
         elif imgType == 'gif':
-            pass
+            searchStr = imgParams
+            searchStr.replace('| ', ' ')
+            searchStr.replace('|', ' ')
+            searchStr.replace(', ', ' ')
+            searchStr.replace(',', ' ')
+            searchStr.rstrip()
+            gifURL = genGif(searchStr)
+            print(gifURL)
+            return gifURL
 
         else:
             print("Improperly formatted <magic> tag.")
             return -1
         
 
-# genImg(61579,'blah', 'blah')
-# processString('meme: rains | y u no happen during summers')
+processString('meme: rains | y u no happen during summers')
+processString('gif: spongebob squarepants')
