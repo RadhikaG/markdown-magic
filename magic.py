@@ -1,4 +1,7 @@
+import re
+
 from markdown.extensions import Extension
+from markdown.preprocessors import Preprocessor
 from markdown.inlinepatterns import SimpleTagPattern
 
 MAGIC_RE = r'(\<magic\>)(.*?)\<\/magic\>'

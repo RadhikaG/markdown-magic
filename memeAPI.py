@@ -24,13 +24,12 @@ def genMeme(template_id, text0, text1):
     This function returns the url of the meme with the given
     template, upper text, and lower text using the ImgFlip
     meme generation API. Thanks!
+
+    Returns None if it is unable to generate the meme.
     '''
 
     username = 'blag'
     password = 'blag'
-
-    if template_id == '':
-        return None
 
     api_url = 'https://api.imgflip.com/caption_image'
 
@@ -43,6 +42,7 @@ def genMeme(template_id, text0, text1):
             'text1': text1,
         }
 
+    # No bottom text if text1 is an empty string
     elif text1 == '':
         payload = {
             'template_id': template_id,
@@ -60,7 +60,7 @@ def genMeme(template_id, text0, text1):
     if request_status != True:
         error_msg = parsed_json['error_message']
         print(error_msg)
-        return -1
+        return None
 
     else:
         imgURL = parsed_json['data']['url']
@@ -68,12 +68,15 @@ def genMeme(template_id, text0, text1):
         return imgURL
 
 
-def processMeme(inptStr):
+def findMeme(inptStr):
     '''
     inptStr may be a string of the following forms:
     * 'text0 | text1'
     * 'text0'
+
+    Returns None if it can't find find a meme from the list given above
     '''
+
     global meme_id_dict
 
     testStr = inptStr
@@ -96,6 +99,52 @@ def processMeme(inptStr):
             return template_id
 
     if template_id == 0:
-        print("Couldn't find a suitable match for meme :(")
         return None
+
+
+def processMeme(imgParams):
+    '''
+    Wrapper function for genMeme() and findMeme()
+    imgParams may be a string of the following forms:
+    * 'text0 | text1'
+    * 'text0'
+
+    Fails gracefully when it can't find or generate a meme
+    by produing an appropriate image url with the failure
+    message on it.
+    '''
+
+    template_id = findMeme(imgParams)
+
+    if template_id is None:
+        print("Couldn't find a suitable match for meme :(")
+        return -1
+
+    # if template_id exists
+    imgParams = imgParams.split('|')
+
+    if len(imgParams) == 2 or len(imgParams) == 1:
+        text0 = imgParams[0]
+
+        if len(imgParams) == 2:
+            text1 = imgParams[1]    # Bottom text exists
+        elif len(imgParams) == 1:
+            text1 = ''              # No bottom text
+
+        imgURL = genMeme(template_id, text0, text1)
+
+        if imgURL is None:          # Couldn't generate meme
+            print("Couldn't find a suitable match for meme :(")
+            return -1
+        else:                       # Success!
+            # print(imgURL)
+            return imgURL
+
+    elif len(imgParams) > 2:
+        print("Too many lines of captions! Cannot create meme.")
+        return -1
+
+    elif len(imgParams) < 1:
+        print("Too few lines of captions! Cannot create meme.")
+        return -1
 

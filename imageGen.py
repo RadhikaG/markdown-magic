@@ -1,5 +1,6 @@
-from memeAPI import processMeme, genMeme
-from gifAPI import genGif
+from memeAPI import processMeme
+from gifAPI import processGif
+
 
 def processString(inptStr):
     ''' 
@@ -9,9 +10,14 @@ def processString(inptStr):
 
     If not, it returns an appropriate error message,
     stating an improperly formatted <magic> tag.
+    
+    Fails gracefully when it can't find or generate a meme
+    or a gif, by produing an appropriate image url with the
+    failure message on it.
 
     TODO: Find a way to efficiently search for xkcd comics
     '''
+
     imgParamList = inptStr.split(':')
 
     if len(imgParamList) < 2:
@@ -24,42 +30,12 @@ def processString(inptStr):
         imgParams = imgParamList[1]
         
         if imgType == 'meme':
-            template_id = processMeme(imgParams)
-
-            if template_id is None:
-                return -1
-
-            # if template_id exists
-            imgParams = imgParams.split('|')
-
-            if len(imgParams) == 2 or len(imgParams) == 1:
-                text0 = imgParams[0]
-
-                if len(imgParams) == 2:
-                    text1 = imgParams[1]
-                elif len(imgParams) == 1:
-                    text1 = ''
-
-                imgURL = genMeme(template_id, text0, text1)
-                print(imgURL)
-                return imgURL
-
-            elif len(imgParams) > 2:
-                print("Too many lines of captions! Cannot create meme.")
-                return -1
-
-            elif len(imgParams) < 1:
-                print("Too few lines of captions! Cannot create meme.")
-                return -1
+            imgURL = processMeme(imgParams)
+            print(imgURL)
+            return imgURL
 
         elif imgType == 'gif':
-            searchStr = imgParams
-            searchStr.replace('| ', ' ')
-            searchStr.replace('|', ' ')
-            searchStr.replace(', ', ' ')
-            searchStr.replace(',', ' ')
-            searchStr.rstrip()
-            gifURL = genGif(searchStr)
+            gifURL = processGif(imgParams)
             print(gifURL)
             return gifURL
 
