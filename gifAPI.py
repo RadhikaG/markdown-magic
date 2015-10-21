@@ -1,5 +1,6 @@
 import requests, json
 import string
+from error_urls import no_search_params, no_suitable_gif
 
 def processGif(searchStr):
     '''
@@ -7,7 +8,7 @@ def processGif(searchStr):
     with the given search parameters using the Giphy API.
     Thanks!
 
-    Fails gracefully when it can't find a gif by produing an 
+    Fails gracefully when it can't find a gif by returning an 
     appropriate image url with the failure message on it.
     '''
     

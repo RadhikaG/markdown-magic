@@ -1,6 +1,6 @@
 from memeAPI import processMeme
 from gifAPI import processGif
-
+from error_urls import not_enough_info, improperly_formatted_tag
 
 def processString(inptStr):
     ''' 
@@ -12,17 +12,18 @@ def processString(inptStr):
     stating an improperly formatted <magic> tag.
     
     Fails gracefully when it can't find or generate a meme
-    or a gif, by produing an appropriate image url with the
+    or a gif, by returning an appropriate image url with the
     failure message on it.
 
     TODO: Find a way to efficiently search for xkcd comics
     '''
 
+    inptStr.strip(' ')
     imgParamList = inptStr.split(':')
 
     if len(imgParamList) < 2:
         print("Not enough information for searching for image.")
-        return -1
+        return not_enough_info
 
     else:
 
@@ -31,18 +32,19 @@ def processString(inptStr):
         
         if imgType == 'meme':
             imgURL = processMeme(imgParams)
-            print(imgURL)
+            # print(imgURL)
             return imgURL
 
         elif imgType == 'gif':
             gifURL = processGif(imgParams)
-            print(gifURL)
+            # print(gifURL)
             return gifURL
 
         else:
             print("Improperly formatted <magic> tag.")
-            return -1
+            return improperly_formatted_tag
         
 
-processString('meme: rains | y u no happen during summers')
-processString('gif: spongebob squarepants')
+# processString('meme: rains | y u no happen during summers')
+# processString('gif: spongebob squarepants')
+# processString('meme: blabldhishdf')
