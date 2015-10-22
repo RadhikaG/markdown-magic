@@ -24,7 +24,7 @@ def processGif(searchStr):
 
     if searchStr is None or searchStr == '':
         print("No search parameters specified!")
-        return -1
+        return no_search_params
 
     api_url = 'http://api.giphy.com/v1/gifs/search'
     api_key = 'dc6zaTOxFJmzC'
