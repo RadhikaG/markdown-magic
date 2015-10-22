@@ -5,6 +5,14 @@ Markdown-Magic for Python-Markdown
 A `Python-Markdown`_ plugin for autocreating memes and finding
 the best-fitting gifs for your posts.
 
+**Why?**
+
+In most blogging platforms, putting memes or gifs in your posts is a bit
+of a bother. You have to manually search for them, download/generate them, 
+then upload them back, or search and paste the url.
+
+This Markdown extension was created to make this process simpler, 
+less time-consuming, and more fun!
 
 Installation
 ------------
