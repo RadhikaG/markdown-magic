@@ -10,6 +10,7 @@ Installation
 ------------
 
 Install it using pip::
+
     $ pip install markdown-magic
 
 
@@ -49,6 +50,7 @@ and markdown-magic will search and use the appropriate gif
 according to the given search parameters.
 
 Here's an example on the Python interpreter::
+
     >>> import markdown
     >>> text = """
     ... [magic] meme: rains | y u no happen during summers [/magic]
