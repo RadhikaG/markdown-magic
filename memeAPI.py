@@ -34,23 +34,15 @@ def genMeme(template_id, text0, text1):
 
     api_url = 'https://api.imgflip.com/caption_image'
 
+    payload = {
+        'template_id': template_id,
+        'username': username,
+        'password': password,
+        'text0': text0,
+    }
+    # Add bottom text if provided
     if text1 != '':
-        payload = {
-            'template_id': template_id,
-            'username': username,
-            'password': password,
-            'text0': text0,
-            'text1': text1,
-        }
-
-    # No bottom text if text1 is an empty string
-    elif text1 == '':
-        payload = {
-            'template_id': template_id,
-            'username': username,
-            'password': password,
-            'text0': text0,
-        }
+        payload['text1'] = text1
 
     r = requests.get(api_url, params=payload)
     # print(parsed_json)
