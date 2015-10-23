@@ -1,6 +1,6 @@
-from memeAPI import processMeme
-from gifAPI import processGif
-from error_urls import not_enough_info, improperly_formatted_tag
+from .memeAPI import processMeme
+from .gifAPI import processGif
+from .error_urls import not_enough_info, improperly_formatted_tag
 
 def processString(inptStr):
     ''' 

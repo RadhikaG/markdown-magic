@@ -1,4 +1,5 @@
 __pycache__/*
+magic/__pycache__/*
 dist/
 build/
 MANIFEST
