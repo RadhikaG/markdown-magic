@@ -1,5 +1,5 @@
 import requests, json
-from error_urls import meme_not_supported, couldnt_create_meme, too_many_lines, too_few_lines
+from .error_urls import meme_not_supported, couldnt_create_meme, too_many_lines, too_few_lines
 
 meme_id_dict = [
     ['one does not simply','lord of the rings boromir', 61579],

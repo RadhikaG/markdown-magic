@@ -3,7 +3,7 @@ from markdown.extensions import Extension
 from markdown.inlinepatterns import Pattern
 from markdown.util import etree
 
-from imageGen import processString
+from .imageGen import processString
 
 # Regex for finding user input into [magic] tag
 MAGIC_RE = r'(\[magic\] ?)(.*?)\[\/magic\]'

@@ -1,6 +1,6 @@
 import requests, json
 import string
-from error_urls import no_search_params, no_suitable_gif
+from .error_urls import no_search_params, no_suitable_gif
 
 def processGif(searchStr):
     '''
