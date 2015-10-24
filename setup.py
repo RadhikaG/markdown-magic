@@ -10,7 +10,7 @@ setup(
     py_modules=['magic'],
     install_requires=['markdown>=2.5'],
     license='MIT',
-    description='Create memes and find best-fitting gifs using Python-Markdown.',
+    description='A Python-Markdown plugin for creating memes and finding the best-fitting gifs for your posts.',
     keywords=['markdown','markup','memes','gifs','plugin'],
 
     classifiers=[
