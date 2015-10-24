@@ -3,14 +3,16 @@ from setuptools import setup
 
 setup(
     name='markdown-magic',
-    version='1.0',
+    version='1.1',
     maintainer='Radhika Ghosal',
     maintainer_email='radhikaghosal@gmail.com',
     url='https://github.com/RadhikaG/markdown-magic',
     packages=['magic'],
     install_requires=['markdown>=2.5', 'requests'],
     license='MIT',
+
     description='A Python-Markdown plugin for creating memes and finding the best-fitting gifs for your posts.',
+
     keywords=['markdown','markup','memes','gifs','plugin'],
 
     classifiers=[
