@@ -31,7 +31,7 @@ Simply do :code:`[magic] meme: top_text | bottom_text [/magic]`
 for whichever meme template you want to use, and markdown-magic
 will detect which template to use on its own.
 
-The markdown-magic currently supports the following meme templates:
+Markdown-magic currently supports the following meme templates:
 
 * Lord of the Rings Boromir - "One does not simply"
 * The Most Interesting Man in the World - "I don't always... when I do"
