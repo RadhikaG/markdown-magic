@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name='markdown-magic',
-    version='1.1',
+    version='1.1.2',
     maintainer='Radhika Ghosal',
     maintainer_email='radhikaghosal@gmail.com',
     url='https://github.com/RadhikaG/markdown-magic',

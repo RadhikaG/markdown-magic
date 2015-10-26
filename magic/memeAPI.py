@@ -1,5 +1,7 @@
 import requests, json
+import time
 from .error_urls import meme_not_supported, couldnt_create_meme, too_many_lines, too_few_lines
+from requests.exceptions import ConnectionError
 
 meme_id_dict = [
     ['one does not simply','lord of the rings boromir', 61579],
@@ -44,7 +46,12 @@ def genMeme(template_id, text0, text1):
     if text1 != '':
         payload['text1'] = text1
 
-    r = requests.get(api_url, params=payload)
+    try:
+        r = requests.get(api_url, params=payload)
+    except ConnectionError:
+        time.sleep(1)
+        r = requests.get(api_url, params=payload)
+
     # print(parsed_json)
     parsed_json = json.loads(r.text)
 
